@@ -1,4 +1,4 @@
-import NotFound from "./pages/not-found.html?raw";
+import NotFound from "../pages/not-found.html?raw";
 
 export class Router {
   routes: {
