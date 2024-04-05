@@ -1,6 +1,6 @@
 import { Router } from "./router";
 import Main from "./pages/main.html?raw";
-import "./style.scss";
+import "./styles/index.scss";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = Main;
 
