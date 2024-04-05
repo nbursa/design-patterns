@@ -66,7 +66,6 @@ export class Router {
         el.innerHTML = componentModule.default;
       } catch (error) {
         el.innerHTML = `Failed to load the component, ${error}`;
-        // el.innerHTML = NotFound;
       }
     } else {
       el.innerHTML = NotFound;
