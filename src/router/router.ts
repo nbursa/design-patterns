@@ -103,12 +103,29 @@ export class Router {
 
   toggleSidebar(): void {
     const sidebar = document.querySelector("#sidebar");
+    const routerView = document.querySelector("#router-view") as HTMLElement;
+    const toggleBtn = document.querySelector("#toggle") as HTMLButtonElement;
+
     if (sidebar) {
       sidebar.classList.toggle("active");
-    }
-    const toggleBtn = document.querySelector("#toggle");
-    if (toggleBtn) {
-      toggleBtn.textContent = sidebar?.classList.contains("active") ? "<" : ">";
+
+      if (sidebar.classList.contains("active")) {
+        // if (routerView) {
+        routerView.style.left = "300px";
+        routerView.style.width = "calc(100vw - 300px)";
+        // }
+        if (toggleBtn) {
+          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" />`;
+        }
+      } else {
+        // if (routerView) {
+        routerView.style.left = "0";
+        routerView.style.width = "100vw";
+        // }
+        if (toggleBtn) {
+          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
+        }
+      }
     }
   }
 
@@ -137,16 +154,26 @@ export class Router {
       if (!existingToggleBtn) {
         const toggleBtn = document.createElement("button");
         toggleBtn.id = "toggle";
-        toggleBtn.textContent = sidebar.classList.contains("active")
-          ? "<"
-          : ">";
+        toggleBtn.innerHTML = sidebar.classList.contains("active")
+          ? `<img src="/arrow.svg" alt="arrow" />`
+          : `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
         toggleBtn.addEventListener("click", () => {
           this.toggleSidebar();
         });
 
         sidebar.insertBefore(toggleBtn, sidebar.firstChild);
       }
+      this.addSidebarLinkEventListeners();
     }
+  }
+
+  addSidebarLinkEventListeners(): void {
+    const sidebarLinks = document.querySelectorAll("#sidebar a");
+    sidebarLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        this.toggleSidebar();
+      });
+    });
   }
 
   createRouterView(): HTMLElement {

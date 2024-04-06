@@ -84,12 +84,34 @@ h1 {
   z-index: 10;
   background-color: #242424;
   box-shadow: none;
+  padding: 30px;
+  h3 {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-style: italic;
+  }
+  ul {
+    list-style: none;
+    margin-bottom: 15px;
+    li {
+      margin-bottom: 5px;
+    }
+  }
   &.active {
     left: 0;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.25);
     button#toggle {
       right: 10px;
       content: "<";
+    }
+    #router-view {
+      left: 300px;
+      right: 0;
+      width: auto;
     }
   }
   button#toggle {
@@ -98,6 +120,15 @@ h1 {
     right: -70px;
     content: ">";
     color: #535bf2;
+    background-color: transparent;
+    padding: 5px;
+    padding-right: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      border-color: transparent;
+    }
     &:focus {
       outline: none;
     }
@@ -244,4 +275,9 @@ button:focus-visible {
     font-size: 70px;
     font-style: normal;
   }
+}
+
+.rotate {
+  transform: rotate(180deg);
+  margin-right: 7px;
 }
