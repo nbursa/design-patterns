@@ -1,4 +1,5 @@
 import NotFound from "../pages/not-found.html?raw";
+import Sidebar from "../pages/sidebar.html?raw";
 
 type ScriptImportFunction = () => Promise<{
   default: () => void;
@@ -82,6 +83,7 @@ export class Router {
       try {
         const componentModule = await route.component();
         el.innerHTML = componentModule.default;
+        this.renderSidebar();
 
         const lastSegment = path.split("/").pop();
         const pageScriptImport = scriptImports[lastSegment || ""];
@@ -96,6 +98,54 @@ export class Router {
       }
     } else {
       el.innerHTML = NotFound;
+    }
+  }
+
+  toggleSidebar(): void {
+    const sidebar = document.querySelector("#sidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("active");
+    }
+    const toggleBtn = document.querySelector("#toggle");
+    if (toggleBtn) {
+      toggleBtn.textContent = sidebar?.classList.contains("active") ? "<" : ">";
+    }
+  }
+
+  renderSidebar(): void {
+    const path = window.location.pathname;
+    const existingSidebar = document.querySelector("#sidebar");
+    const existingToggleBtn = document.querySelector("#toggle");
+
+    if (existingSidebar) {
+      existingSidebar.parentNode?.removeChild(existingSidebar);
+    }
+    if (existingToggleBtn) {
+      existingToggleBtn.parentNode?.removeChild(existingToggleBtn);
+    }
+
+    if (!["/", "/catalog"].includes(path) && !existingSidebar) {
+      const sidebar = document.createElement("nav");
+      sidebar.id = "sidebar";
+      sidebar.innerHTML = Sidebar;
+      const routerView = document.querySelector("#router-view");
+      if (routerView?.firstChild) {
+        routerView.insertBefore(sidebar, routerView.firstChild);
+      } else {
+        routerView?.appendChild(sidebar);
+      }
+      if (!existingToggleBtn) {
+        const toggleBtn = document.createElement("button");
+        toggleBtn.id = "toggle";
+        toggleBtn.textContent = sidebar.classList.contains("active")
+          ? "<"
+          : ">";
+        toggleBtn.addEventListener("click", () => {
+          this.toggleSidebar();
+        });
+
+        sidebar.insertBefore(toggleBtn, sidebar.firstChild);
+      }
     }
   }
 

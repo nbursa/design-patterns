@@ -56,6 +56,7 @@ h1 {
   align-items: center;
   background-color: #242424;
   z-index: 100;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
 }
 
 #navbar ul {
@@ -72,6 +73,35 @@ h1 {
   left: 0;
   width: 100vw;
   min-height: calc(100vh - 50px);
+}
+
+#sidebar {
+  position: fixed;
+  top: 50px;
+  left: -300px;
+  bottom: 0;
+  width: 300px;
+  z-index: 10;
+  background-color: #242424;
+  box-shadow: none;
+  &.active {
+    left: 0;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.25);
+    button#toggle {
+      right: 10px;
+      content: "<";
+    }
+  }
+  button#toggle {
+    position: absolute;
+    top: 20px;
+    right: -70px;
+    content: ">";
+    color: #535bf2;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 button {
