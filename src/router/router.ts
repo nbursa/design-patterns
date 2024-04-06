@@ -1,5 +1,13 @@
 import NotFound from "../pages/not-found.html?raw";
 
+type ScriptImportFunction = () => Promise<{
+  default: () => void;
+}>;
+
+interface ScriptImportsMap {
+  [key: string]: ScriptImportFunction;
+}
+
 export class Router {
   routes: {
     path: string;
@@ -57,6 +65,16 @@ export class Router {
     const path = window.location.pathname;
     const route = this.routes.find((route) => route.path.startsWith(path));
 
+    const scriptImports: ScriptImportsMap = {
+      constructor: () => import("../pages/constructor/index.ts"),
+      module: () => import("../pages/module/index.ts"),
+      "revealing-module": () => import("../pages/revealing-module/index.ts"),
+      singleton: () => import("../pages/singleton/index.ts"),
+      prototype: () => import("../pages/prototype/index.ts"),
+      factory: () => import("../pages/factory/index.ts"),
+      "abstract-factory": () => import("../pages/abstract-factory/index.ts"),
+    };
+
     const el =
       document.querySelector("#router-view") || this.createRouterView();
 
@@ -64,6 +82,15 @@ export class Router {
       try {
         const componentModule = await route.component();
         el.innerHTML = componentModule.default;
+
+        const lastSegment = path.split("/").pop();
+        const pageScriptImport = scriptImports[lastSegment || ""];
+        if (pageScriptImport) {
+          const pageScript = await pageScriptImport();
+          if (pageScript.default) {
+            pageScript.default();
+          }
+        }
       } catch (error) {
         el.innerHTML = `Failed to load the component, ${error}`;
       }

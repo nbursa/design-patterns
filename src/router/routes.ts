@@ -6,31 +6,33 @@ export const routes = [
     children: [
       {
         path: "/creation/constructor",
-        component: () => import("../pages/constructor.html?raw"),
+        component: () => import("../pages/constructor/constructor.html?raw"),
       },
       {
         path: "/creation/module",
-        component: () => import("../pages/module.html?raw"),
+        component: () => import("../pages/module/module.html?raw"),
       },
       {
         path: "/creation/revealing-module",
-        component: () => import("../pages/revealing-module.html?raw"),
+        component: () =>
+          import("../pages/revealing-module/revealing-module.html?raw"),
       },
       {
         path: "/creation/singleton",
-        component: () => import("../pages/singleton.html?raw"),
+        component: () => import("../pages/singleton/singleton.html?raw"),
       },
       {
         path: "/creation/prototype",
-        component: () => import("../pages/prototype.html?raw"),
+        component: () => import("../pages/prototype/prototype.html?raw"),
       },
       {
         path: "/creation/factory",
-        component: () => import("../pages/factory.html?raw"),
+        component: () => import("../pages/factory/factory.html?raw"),
       },
       {
         path: "/creation/abstract-factory",
-        component: () => import("../pages/abstract-factory.html?raw"),
+        component: () =>
+          import("../pages/abstract-factory/abstract-factory.html?raw"),
       },
     ],
   },
