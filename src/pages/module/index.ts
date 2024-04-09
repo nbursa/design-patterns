@@ -9,7 +9,8 @@ export default () => {
 
   console.log(MyModule.publicMethod());
 
-  const exampleEl = document.querySelector("#module-example");
+  const exampleEl = document.querySelector("#example");
+
   if (exampleEl) {
     exampleEl.innerHTML = `      const MyModule = (() => {
         let privateVar = 'I am private';

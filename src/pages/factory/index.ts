@@ -26,7 +26,7 @@ export default () => {
   const myTesla = teslaCreator.createCar("Model S", 2020);
   console.log(myTesla.displayInfo());
 
-  const exampleEl = document.querySelector("#factory-example");
+  const exampleEl = document.querySelector("#example");
   if (exampleEl) {
     exampleEl.textContent = `class TeslaCarCreator extends CarCreator {
   createCar(model, year) {

@@ -42,7 +42,7 @@ export default () => {
   console.log("economyCar:", economyCar);
   console.log("luxuryCar:", luxuryCar);
 
-  const exampleEl = document.querySelector("#abstract-example");
+  const exampleEl = document.querySelector("#example");
 
   if (exampleEl) {
     exampleEl.innerHTML = `

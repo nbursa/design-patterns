@@ -6,33 +6,43 @@ export const routes = [
     children: [
       {
         path: "/creation/constructor",
-        component: () => import("../pages/constructor/constructor.html?raw"),
+        component: () => import("../pages/constructor/template.html?raw"),
       },
       {
         path: "/creation/module",
-        component: () => import("../pages/module/module.html?raw"),
+        component: () => import("../pages/module/template.html?raw"),
       },
       {
         path: "/creation/revealing-module",
-        component: () =>
-          import("../pages/revealing-module/revealing-module.html?raw"),
+        component: () => import("../pages/revealing-module/template.html?raw"),
       },
       {
         path: "/creation/singleton",
-        component: () => import("../pages/singleton/singleton.html?raw"),
+        component: () => import("../pages/singleton/template.html?raw"),
       },
       {
         path: "/creation/prototype",
-        component: () => import("../pages/prototype/prototype.html?raw"),
+        component: () => import("../pages/prototype/template.html?raw"),
       },
       {
         path: "/creation/factory",
-        component: () => import("../pages/factory/factory.html?raw"),
+        component: () => import("../pages/factory/template.html?raw"),
       },
       {
         path: "/creation/abstract-factory",
-        component: () =>
-          import("../pages/abstract-factory/abstract-factory.html?raw"),
+        component: () => import("../pages/abstract-factory/template.html?raw"),
+      },
+      {
+        path: "/structure/facade",
+        component: () => import("../pages/facade/template.html?raw"),
+      },
+      {
+        path: "/structure/mixin",
+        component: () => import("../pages/mixin/template.html?raw"),
+      },
+      {
+        path: "/structure/decorator",
+        component: () => import("../pages/decorator/template.html?raw"),
       },
     ],
   },

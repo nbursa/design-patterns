@@ -30,6 +30,7 @@ export class Router {
     }[]
   ) {
     this.initRoutes(routes);
+    window.addEventListener("resize", () => this.resolve());
   }
 
   initRoutes(
@@ -74,6 +75,9 @@ export class Router {
       prototype: () => import("../pages/prototype/index.ts"),
       factory: () => import("../pages/factory/index.ts"),
       "abstract-factory": () => import("../pages/abstract-factory/index.ts"),
+      facade: () => import("../pages/facade/index.ts"),
+      mixin: () => import("../pages/mixin/index.ts"),
+      decorator: () => import("../pages/decorator/index.ts"),
     };
 
     const el =
@@ -98,34 +102,9 @@ export class Router {
       }
     } else {
       el.innerHTML = NotFound;
-    }
-  }
-
-  toggleSidebar(): void {
-    const sidebar = document.querySelector("#sidebar");
-    const routerView = document.querySelector("#router-view") as HTMLElement;
-    const toggleBtn = document.querySelector("#toggle") as HTMLButtonElement;
-
-    if (sidebar) {
-      sidebar.classList.toggle("active");
-
-      if (sidebar.classList.contains("active")) {
-        // if (routerView) {
-        routerView.style.left = "300px";
-        routerView.style.width = "calc(100vw - 300px)";
-        // }
-        if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" />`;
-        }
-      } else {
-        // if (routerView) {
-        routerView.style.left = "0";
-        routerView.style.width = "100vw";
-        // }
-        if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
-        }
-      }
+      const routerView = document.querySelector("#router-view") as HTMLElement;
+      routerView.style.left = "0";
+      routerView.style.width = "100vw";
     }
   }
 
@@ -145,15 +124,18 @@ export class Router {
       const sidebar = document.createElement("nav");
       sidebar.id = "sidebar";
       sidebar.innerHTML = Sidebar;
-      const routerView = document.querySelector("#router-view");
+      const routerView = document.querySelector("#router-view") as HTMLElement;
       if (routerView?.firstChild) {
         routerView.insertBefore(sidebar, routerView.firstChild);
       } else {
         routerView?.appendChild(sidebar);
       }
+      routerView.style.left = "0";
+      routerView.style.width = "100vw";
       if (!existingToggleBtn) {
         const toggleBtn = document.createElement("button");
         toggleBtn.id = "toggle";
+        if (window.innerWidth >= 768) this.toggleSidebar();
         toggleBtn.innerHTML = sidebar.classList.contains("active")
           ? `<img src="/arrow.svg" alt="arrow" />`
           : `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
@@ -163,7 +145,7 @@ export class Router {
 
         sidebar.insertBefore(toggleBtn, sidebar.firstChild);
       }
-      this.addSidebarLinkEventListeners();
+      // this.addSidebarLinkEventListeners();
     }
   }
 
@@ -174,6 +156,32 @@ export class Router {
         this.toggleSidebar();
       });
     });
+  }
+
+  toggleSidebar(): void {
+    const sidebar = document.querySelector("#sidebar");
+    const routerView = document.querySelector("#router-view") as HTMLElement;
+    const toggleBtn = document.querySelector("#toggle") as HTMLButtonElement;
+
+    if (sidebar) {
+      sidebar.classList.toggle("active");
+
+      if (sidebar.classList.contains("active")) {
+        routerView.style.left = "300px";
+        routerView.style.width = "calc(100vw - 300px)";
+
+        if (toggleBtn) {
+          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" />`;
+        }
+      } else {
+        routerView.style.left = "0";
+        routerView.style.width = "100vw";
+
+        if (toggleBtn) {
+          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
+        }
+      }
+    }
   }
 
   createRouterView(): HTMLElement {
