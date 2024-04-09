@@ -1,4 +1,3 @@
-import flyweight from "../pages/flyweight/index.ts";
 import NotFound from "../pages/not-found.html?raw";
 import Sidebar from "../pages/sidebar.html?raw";
 
