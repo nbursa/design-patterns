@@ -17,11 +17,14 @@ export default () => {
     return {
       increment: publicIncrement,
       getCount: publicGetCount,
+      publicFunction,
     };
   })();
 
   console.log(RevealingModule.getCount());
   RevealingModule.increment();
+  console.log(RevealingModule.getCount());
+  RevealingModule.publicFunction();
   console.log(RevealingModule.getCount());
 
   const exampleEl = document.querySelector("#example");
