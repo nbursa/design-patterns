@@ -44,6 +44,22 @@ export const routes = [
         path: "/structure/decorator",
         component: () => import("../pages/decorator/template.html?raw"),
       },
+      {
+        path: "/structure/flyweight",
+        component: () => import("../pages/flyweight/template.html?raw"),
+      },
+      {
+        path: "/behavior/observer",
+        component: () => import("../pages/observer/template.html?raw"),
+      },
+      {
+        path: "/behavior/mediator",
+        component: () => import("../pages/mediator/template.html?raw"),
+      },
+      {
+        path: "/behavior/command",
+        component: () => import("../pages/command/template.html?raw"),
+      },
     ],
   },
 ];

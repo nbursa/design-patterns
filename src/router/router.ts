@@ -1,3 +1,4 @@
+import flyweight from "../pages/flyweight/index.ts";
 import NotFound from "../pages/not-found.html?raw";
 import Sidebar from "../pages/sidebar.html?raw";
 
@@ -78,10 +79,15 @@ export class Router {
       facade: () => import("../pages/facade/index.ts"),
       mixin: () => import("../pages/mixin/index.ts"),
       decorator: () => import("../pages/decorator/index.ts"),
+      flyweight: () => import("../pages/flyweight/index.ts"),
+      observer: () => import("../pages/observer/index.ts"),
+      mediator: () => import("../pages/mediator/index.ts"),
+      command: () => import("../pages/command/index.ts"),
     };
 
     const el =
       document.querySelector("#router-view") || this.createRouterView();
+    const routerView = document.querySelector("#router-view") as HTMLElement;
 
     if (route) {
       try {
@@ -97,14 +103,15 @@ export class Router {
             pageScript.default();
           }
         }
+        if (["/", "/catalog"].includes(route.path)) {
+          routerView.removeAttribute("style");
+        }
       } catch (error) {
         el.innerHTML = `Failed to load the component, ${error}`;
       }
     } else {
       el.innerHTML = NotFound;
-      const routerView = document.querySelector("#router-view") as HTMLElement;
-      routerView.style.left = "0";
-      routerView.style.width = "100vw";
+      routerView.removeAttribute("style");
     }
   }
 

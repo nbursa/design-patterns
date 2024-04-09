@@ -54,17 +54,20 @@ h1 {
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #242424;
   z-index: 100;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
 }
 
 #navbar ul {
+  width: 100%;
   list-style: none;
   margin: 0;
   padding: 1rem;
   display: flex;
-  gap: 1rem;
+  justify-content: center;
+  gap: 3rem;
 }
 
 #router-view {
@@ -241,7 +244,11 @@ button:focus-visible {
 .abstract-factory,
 .facade,
 .mixin,
-.decorator {
+.decorator,
+.flyweight,
+.observer,
+.mediator,
+.command {
   max-width: 768px;
   margin: 0 auto;
   h2 {
