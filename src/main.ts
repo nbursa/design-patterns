@@ -12,11 +12,13 @@ document.addEventListener("click", (event) => {
     const href = target.getAttribute("href");
     if (href && href.startsWith("/")) {
       event.preventDefault();
-      router.navigate(href);
+      router.navigate(href).catch(error => console.log(error));
     }
   }
 });
 
+if (window.location.pathname === '/' || window.location.pathname === '/design-patterns/') {
+  router.navigate('/home').catch(error => {console.log(error)});
+}
 
-
-router.resolve();
+router.resolve().catch(error => {console.log(error)});

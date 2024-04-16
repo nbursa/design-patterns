@@ -45,29 +45,35 @@ export class Router {
     }[]
   ): void {
     routes.forEach((route) => {
-      this.addRoute(`${this.basePath}${route.path}`, route.component);
+      this.addRoute(route.path, route.component);
 
       route.children?.forEach((child) => {
-        this.addRoute(`${this.basePath}${route.path}${child.path}`, child.component);
+        this.addRoute(`${route.path}${child.path}`, child.component);
       });
     });
   }
 
   addRoute(path: string, component: () => Promise<{ default: string }>): void {
-    if (!this.routes.some((route) => route.path === path)) {
-      this.routes.push({ path, component });
+    const fullPath = path === this.basePath ? this.basePath : `${this.basePath}${path}`
+    if (!this.routes.some((route) => route.path === fullPath)) {
+      this.routes.push({path: fullPath, component });
     }
   }
 
   async navigate(path: string) {
-    window.history.pushState({}, "", `${this.basePath}${path}`);
+    const prefixedPath = path.startsWith(this.basePath) ? path : `${this.basePath}${path}`;
+    window.history.pushState({}, "", prefixedPath);
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
     const fullPath = window.location.pathname;
-    const path = fullPath.replace(new RegExp(`^${this.basePath}`), '')
-    const route = this.routes.find((route) => route.path === path || path.startsWith(route.path + '/'));
+    const basePath = this.basePath.replace(/\/$/, '');
+    const path = fullPath.replace(new RegExp(`^${basePath}`), '').replace(/\/$/, '');
+    const route = this.routes.find(r => {
+      const normalizedRoutePath = r.path.replace(/\/$/, '');
+      return fullPath === normalizedRoutePath || path.startsWith(normalizedRoutePath + '/');
+    });
 
     const scriptImports: ScriptImportsMap = {
       constructor: () => import("../pages/constructor/index.ts"),
@@ -104,7 +110,7 @@ export class Router {
             pageScript.default();
           }
         }
-        if (["/", "/catalog"].includes(route.path)) {
+        if (["/home", "/catalog"].includes(route.path)) {
           routerView.removeAttribute("style");
         }
       } catch (error) {
@@ -129,7 +135,7 @@ export class Router {
       existingToggleBtn.parentNode?.removeChild(existingToggleBtn);
     }
 
-    if (!["/", "/catalog"].includes(path) && !existingSidebar) {
+    if (!["/home", "/catalog"].includes(path) && !existingSidebar) {
       const sidebar = document.createElement("nav");
       sidebar.id = "sidebar";
       sidebar.innerHTML = Sidebar;

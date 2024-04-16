@@ -1,5 +1,5 @@
 export const routes = [
-  { path: "/", component: () => import("../pages/home.html?raw") },
+  { path: "/home", component: () => import("../pages/home.html?raw") },
   {
     path: "/catalog",
     component: () => import("../pages/catalog.html?raw"),
