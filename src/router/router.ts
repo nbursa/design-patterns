@@ -10,6 +10,7 @@ interface ScriptImportsMap {
 }
 
 export class Router {
+  basePath = '/design-patterns';
   routes: {
     path: string;
     component: () => Promise<{ default: string }>;
@@ -44,10 +45,10 @@ export class Router {
     }[]
   ): void {
     routes.forEach((route) => {
-      this.addRoute(route.path, route.component);
+      this.addRoute(`${this.basePath}${route.path}`, route.component);
 
       route.children?.forEach((child) => {
-        this.addRoute(`${route.path}${child.path}`, child.component);
+        this.addRoute(`${this.basePath}${route.path}${child.path}`, child.component);
       });
     });
   }
@@ -59,13 +60,14 @@ export class Router {
   }
 
   async navigate(path: string) {
-    window.history.pushState({}, "", path);
+    window.history.pushState({}, "", `${this.basePath}${path}`);
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
-    const path = window.location.pathname;
-    const route = this.routes.find((route) => route.path.startsWith(path));
+    const fullPath = window.location.pathname;
+    const path = fullPath.replace(new RegExp(`^${this.basePath}`), '')
+    const route = this.routes.find((route) => route.path === path || path.startsWith(route.path + '/'));
 
     const scriptImports: ScriptImportsMap = {
       constructor: () => import("../pages/constructor/index.ts"),
@@ -115,7 +117,8 @@ export class Router {
   }
 
   renderSidebar(): void {
-    const path = window.location.pathname;
+    const fullPath = window.location.pathname;
+    const path = fullPath.replace(new RegExp(`^${this.basePath}`), '');
     const existingSidebar = document.querySelector("#sidebar");
     const existingToggleBtn = document.querySelector("#toggle");
 

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig(({ mode }) => ({
-    base: mode === 'production' ? '/design-patterns/' : '/'
-}));
+export default defineConfig({
+    base: '/design-patterns/'
+});
