@@ -152,8 +152,8 @@ export class Router {
         toggleBtn.id = "toggle";
         if (window.innerWidth >= 768) this.toggleSidebar();
         toggleBtn.innerHTML = sidebar.classList.contains("active")
-          ? `<img src="/arrow.svg" alt="arrow" />`
-          : `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
+          ? `<img src="{${this.basePath}/arrow.svg}" alt="arrow" />`
+          : `<img src="${this.basePath}/arrow.svg" alt="arrow" class="rotate" />`;
         toggleBtn.addEventListener("click", () => {
           this.toggleSidebar();
         });
@@ -186,14 +186,14 @@ export class Router {
         routerView.style.width = "calc(100vw - 300px)";
 
         if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" />`;
+          toggleBtn.innerHTML = `<img src="${this.basePath}/arrow.svg" alt="arrow" />`;
         }
       } else {
         routerView.style.left = "0";
         routerView.style.width = "100vw";
 
         if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src="/arrow.svg" alt="arrow" class="rotate" />`;
+          toggleBtn.innerHTML = `<img src="${this.basePath}/arrow.svg" alt="arrow" class="rotate" />`;
         }
       }
     }
