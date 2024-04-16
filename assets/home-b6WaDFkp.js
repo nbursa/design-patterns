@@ -1,0 +1,17 @@
+const e=`<div class="home page">
+  <div class="content">
+    <h1>Design Patterns</h1>
+    <p class="subtitle">
+      A comprehensive collection of design patterns implemented in JavaScript.
+    </p>
+    <p>
+      Design patterns are best practices that the developer community has found
+      to be particularly useful in common scenarios. This project aims to
+      illustrate how various design patterns can be applied in JavaScript
+      development to solve specific design problems or enhance the efficiency of
+      code.
+    </p>
+    <p><a href="/catalog">View catalog</a></p>
+  </div>
+</div>
+`;export{e as default};

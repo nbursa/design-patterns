@@ -1,0 +1,40 @@
+const a=`<div class="catalog page">
+  <h2 class="title">Design patterns</h2>
+
+  <div class="category-container">
+    <div class="category">
+      <h4 class="category-title">Creational</h4>
+      <ul>
+        <li><a href="/catalog/creation/constructor">Constructor</a></li>
+        <li><a href="/catalog/creation/module">Module</a></li>
+        <li>
+          <a href="/catalog/creation/revealing-module">Revealing Module</a>
+        </li>
+        <li><a href="/catalog/creation/singleton">Singleton</a></li>
+        <li><a href="/catalog/creation/prototype">Prototype</a></li>
+        <li><a href="/catalog/creation/factory">Factory</a></li>
+        <li>
+          <a href="/catalog/creation/abstract-factory">Abstract Factory</a>
+        </li>
+      </ul>
+    </div>
+    <div class="category text-center">
+      <h4 class="category-title">Structural</h4>
+      <ul>
+        <li><a href="/catalog/structure/facade">Facade</a></li>
+        <li><a href="/catalog/structure/mixin">Mixin</a></li>
+        <li><a href="/catalog/structure/decorator">Decorator</a></li>
+        <li><a href="/catalog/structure/flyweight">Flyweight</a></li>
+      </ul>
+    </div>
+    <div class="category text-right">
+      <h4 class="category-title">Behavioral</h4>
+      <ul>
+        <li><a href="/catalog/behavior/observer">Observer</a></li>
+        <li><a href="/catalog/behavior/mediator">Mediator</a></li>
+        <li><a href="/catalog/behavior/command">Command</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;export{a as default};
