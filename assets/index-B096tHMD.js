@@ -40,4 +40,4 @@ var E=Object.defineProperty;var y=(s,e,t)=>e in s?E(s,e,{enumerable:!0,configura
   </ul>
 </nav>
 <div id="router-view"></div>
-`,v=new R(T);document.querySelector("#app").innerHTML=O;document.addEventListener("DOMContentLoaded",()=>{console.log(window.location.pathname),window.location.pathname==="/"||window.location.pathname==="/design-patterns/"?v.navigate("/home").catch(s=>console.error(s)):v.resolve().catch(s=>console.error(s))});document.addEventListener("click",s=>{const e=s.target;if(e instanceof HTMLElement){const t=e.getAttribute("href");t&&t.startsWith("/")&&(s.preventDefault(),v.navigate(t).catch(n=>console.log(n)))}});
+`,v=new R(T);document.querySelector("#app").innerHTML=O;document.addEventListener("DOMContentLoaded",()=>{console.log(window.location.pathname);const s=window.location.pathname.replace("/design-patterns","");s==="/"||s===""?v.navigate("/home").catch(e=>console.error(e)):v.navigate(s).catch(e=>console.error(e))});document.addEventListener("click",s=>{const e=s.target;if(e instanceof HTMLElement){const t=e.getAttribute("href");t&&t.startsWith("/")&&(s.preventDefault(),v.navigate(t).catch(n=>console.log(n)))}});
