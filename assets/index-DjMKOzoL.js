@@ -40,4 +40,4 @@ var E=Object.defineProperty;var y=(s,t,e)=>t in s?E(s,t,{enumerable:!0,configura
   </ul>
 </nav>
 <div id="router-view"></div>
-`;document.querySelector("#app").innerHTML=A;const v=new R(T);document.addEventListener("click",s=>{const t=s.target;if(t instanceof HTMLElement){const e=t.getAttribute("href");e&&e.startsWith("/")&&(s.preventDefault(),v.navigate(e).catch(n=>console.log(n)))}});(window.location.pathname==="/"||window.location.pathname==="/design-patterns/")&&v.navigate("/home").catch(s=>{console.log(s)});v.resolve().catch(s=>{console.log(s)});
+`;document.querySelector("#app").innerHTML=A;const v=new R(T);document.addEventListener("click",s=>{const t=s.target;if(t instanceof HTMLElement){const e=t.getAttribute("href");e&&e.startsWith("/")&&(s.preventDefault(),v.navigate(e).catch(n=>console.log(n)))}});console.log(window.location.pathname);(window.location.pathname==="/"||window.location.pathname==="/design-patterns/")&&v.navigate("/home").catch(s=>{console.log(s)});v.resolve().catch(s=>{console.log(s)});
