@@ -19,10 +19,15 @@ To see the patterns in action, visit the demo site: [Design Patterns Demo](https
 
 - **Structure Patterns**
 
-  - (More patterns to be added here)
+  - Facade
+  - Mixin
+  - Decorator
+  - Flyweight
 
 - **Behavior Patterns**
-  - (More patterns to be added here)
+  - Observer
+  - Mediator
+  - Command
 
 ## Getting Started
 
