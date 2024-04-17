@@ -1,6 +1,6 @@
 const e=`<div class="home page">
   <div class="content">
-    <h1>Design Patterns</h1>
+    <h1 class="gradient">Design Patterns</h1>
     <p class="subtitle">
       A comprehensive collection of design patterns implemented in JavaScript.
     </p>
