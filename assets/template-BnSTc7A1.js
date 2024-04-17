@@ -12,5 +12,7 @@ const e=`<div class="mediator page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/behavior/observer">Observer</a><a href="/catalog/behavior/command">Command</a></div>
 </div>
 `;export{e as default};

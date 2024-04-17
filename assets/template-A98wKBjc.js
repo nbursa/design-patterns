@@ -17,5 +17,7 @@ const e=`<div class="observer page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/structure/flyweight">Flyweight</a><a href="/catalog/behavior/mediator">Mediator</a></div>
 </div>
 `;export{e as default};

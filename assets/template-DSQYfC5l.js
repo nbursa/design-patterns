@@ -1,4 +1,4 @@
-const e=`<div class="prototype page">
+const t=`<div class="prototype page">
   <h2>Prototype Pattern</h2>
   <p>
     The Prototype pattern is utilized to create objects based on a template of
@@ -6,5 +6,7 @@ const e=`<div class="prototype page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/creation/singleton">Singleton</a><a href="/catalog/creation/factory">Factory</a></div>
 </div>
-`;export{e as default};
+`;export{t as default};

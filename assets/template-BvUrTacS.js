@@ -1,4 +1,4 @@
-const e=`<div class="facade page">
+const a=`<div class="facade page">
   <h2>Facade Pattern</h2>
   <p>
     The Facade pattern provides a simplified interface to a complex subsystem.
@@ -7,5 +7,7 @@ const e=`<div class="facade page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/creation/abstract-factory">Abstract Factory</a><a href="/catalog/structure/mixin">Mixin</a></div>
 </div>
-`;export{e as default};
+`;export{a as default};

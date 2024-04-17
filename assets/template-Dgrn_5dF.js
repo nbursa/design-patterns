@@ -1,4 +1,4 @@
-const e=`<div class="factory page">
+const a=`<div class="factory page">
   <h2>Factory Pattern</h2>
   <p>
     The Factory Method Pattern defines an interface for creating an object, but
@@ -7,5 +7,7 @@ const e=`<div class="factory page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/creation/prototype">Prototype</a><a href="/catalog/creation/abstract-factory">Abstract Factory</a></div>
 </div>
-`;export{e as default};
+`;export{a as default};

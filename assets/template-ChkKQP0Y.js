@@ -7,5 +7,7 @@ const e=`<div class="constructor page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/behavior/command">Command</a><a href="/catalog/creation/module">Module</a></div>
 </div>
 `;export{e as default};

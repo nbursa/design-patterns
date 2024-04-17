@@ -7,5 +7,7 @@ const t=`<div class="mixin page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/structure/facade">Facade</a><a href="/catalog/structure/decorator">Decorator</a></div>
 </div>
 `;export{t as default};

@@ -1,4 +1,4 @@
-const e=`<div class="decorator page">
+const t=`<div class="decorator page">
   <h2>Decorator Pattern</h2>
   <p>
     The Decorator pattern allows for the dynamic extension of object behavior by
@@ -7,5 +7,7 @@ const e=`<div class="decorator page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/structure/mixin">Mixin</a><a href="/catalog/structure/flyweight">Flyweight</a></div>
 </div>
-`;export{e as default};
+`;export{t as default};

@@ -7,5 +7,7 @@ const n=`<div class="singleton page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/creation/revealing-module">Revealing Module</a><a href="/catalog/creation/prototype">Prototype</a></div>
 </div>
 `;export{n as default};

@@ -8,5 +8,7 @@ const e=`<div class="revealing-module page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/creation/module">Module</a><a href="/catalog/creation/singleton">Singleton</a></div>
 </div>
 `;export{e as default};

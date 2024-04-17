@@ -15,5 +15,7 @@ const e=`<div class="command page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/behavior/mediator">Mediator</a><a href="/catalog/creation/constructor">Constructor</a></div>
 </div>
 `;export{e as default};

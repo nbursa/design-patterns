@@ -7,5 +7,7 @@ const e=`<div class="flyweight page">
   </p>
   <h3>Example:</h3>
   <pre id="example"></pre>
+
+  <div class="pagination"><a href="/catalog/structure/decorator">Decorator</a><a href="/catalog/behavior/observer">Observer</a></div>
 </div>
 `;export{e as default};
