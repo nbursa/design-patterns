@@ -41,10 +41,10 @@ body {
 
 #router-view {
   position: absolute;
-  top: 50px;
+  top: 0;
   left: 0;
   width: 100vw;
-  min-height: calc(100vh - 50px);
+  min-height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
@@ -58,19 +58,4 @@ body {
   button {
     background-color: #f9f9f9;
   }
-}
-
-
-.rotate {
-  transform: rotate(180deg);
-  margin-right: 7px;
-}
-
-.gradient {
-  background-image: linear-gradient(to right, #6a82fb, #fc5c7d);
-  padding: 10px 20px;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  display: inline-block;
 }

@@ -1,13 +1,21 @@
 #sidebar {
   position: fixed;
-  top: 50px;
+  top: 0;
   left: -300px;
   bottom: 0;
   width: 300px;
   z-index: 10;
   background-color: #242424;
   box-shadow: none;
-  padding: 30px;
+  padding: 60px 30px 30px;
+  .links {
+    display: flex;
+    flex-direction: column;
+      margin-bottom: 30px;
+    .link {
+      //display: inline-block;
+    }
+  }
   h3 {
     font-size: 25px;
     margin-bottom: 20px;
