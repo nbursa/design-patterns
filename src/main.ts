@@ -2,9 +2,16 @@ import { Router, routes } from "./router";
 import Main from "./pages/main.html?raw";
 import "./styles/index.scss";
 
+const router = new Router(routes);
+
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = Main;
 
-const router = new Router(routes);
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.location.hash) {
+    window.location.hash = '#/home';
+  }
+  router.resolve().catch((error) => console.log(error));
+});
 
 document.addEventListener("click", (event) => {
   const target = event.target;
@@ -16,9 +23,3 @@ document.addEventListener("click", (event) => {
     }
   }
 });
-
-if (window.location.pathname === '/' || window.location.pathname === '/design-patterns/') {
-  router.navigate('/home').catch(error => {console.log(error)});
-}
-
-router.resolve().catch(error => {console.log(error)});

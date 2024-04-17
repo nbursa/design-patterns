@@ -55,24 +55,24 @@ export class Router {
 
   addRoute(path: string, component: () => Promise<{ default: string }>): void {
     const fullPath = path === this.basePath ? this.basePath : `${this.basePath}${path}`
+
     if (!this.routes.some((route) => route.path === fullPath)) {
       this.routes.push({path: fullPath, component });
     }
   }
 
   async navigate(path: string) {
-    const prefixedPath = path.startsWith(this.basePath) ? path : `${this.basePath}${path}`;
-    window.history.pushState({}, "", prefixedPath);
+    window.location.hash = `#${path}`;
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
-    const fullPath = window.location.pathname;
+    const location = window.location.hash.slice(1);
     const basePath = this.basePath.replace(/\/$/, '');
-    const path = fullPath.replace(new RegExp(`^${basePath}`), '').replace(/\/$/, '');
+    const path = location.replace(new RegExp(`^${basePath}`), '').replace(/\/$/, '');
     const route = this.routes.find(r => {
       const normalizedRoutePath = r.path.replace(/\/$/, '');
-      return fullPath === normalizedRoutePath || path.startsWith(normalizedRoutePath + '/');
+      return `${basePath}${location}` === normalizedRoutePath || path.startsWith(normalizedRoutePath + '/');
     });
 
     const scriptImports: ScriptImportsMap = {
@@ -110,7 +110,7 @@ export class Router {
             pageScript.default();
           }
         }
-        if (["/home", "/catalog"].includes(route.path)) {
+        if ([`${basePath}/home`, `${basePath}/catalog`].includes(route.path)) {
           routerView.removeAttribute("style");
         }
       } catch (error) {
@@ -123,7 +123,8 @@ export class Router {
   }
 
   renderSidebar(): void {
-    const fullPath = window.location.pathname;
+    const fullPath = window.location.hash.slice(1);
+
     const path = fullPath.replace(new RegExp(`^${this.basePath}`), '');
     const existingSidebar = document.querySelector("#sidebar");
     const existingToggleBtn = document.querySelector("#toggle");
@@ -152,7 +153,7 @@ export class Router {
         toggleBtn.id = "toggle";
         if (window.innerWidth >= 768) this.toggleSidebar();
         toggleBtn.innerHTML = sidebar.classList.contains("active")
-          ? `<img src="{${this.basePath}/arrow.svg}" alt="arrow" />`
+          ? `<img src="${this.basePath}/arrow.svg" alt="arrow" />`
           : `<img src="${this.basePath}/arrow.svg" alt="arrow" class="rotate" />`;
         toggleBtn.addEventListener("click", () => {
           this.toggleSidebar();
