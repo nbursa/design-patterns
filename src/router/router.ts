@@ -58,16 +58,17 @@ export class Router {
     }
   }
 
+  normalizePath = (path: string) => path.replace(/\/$/, '');
+
   async navigate(path: string) {
-    history.pushState({}, '', path);
+    history.pushState({}, '', this.normalizePath(path));
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
     const path = window.location.pathname;
-    const normalizePath = (path: string) => path.replace(/\/$/, '');
     const route = this.routes.find((r) => {
-      return normalizePath(path) === normalizePath(r.path);
+      return this.normalizePath(path) === this.normalizePath(r.path);
     });
     const scriptImports: ScriptImportsMap = {
       constructor: () => import('../pages/constructor/index.ts'),
