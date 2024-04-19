@@ -44,4 +44,4 @@ var g=Object.defineProperty;var E=(s,t,e)=>t in s?g(s,t,{enumerable:!0,configura
   </ul>
 </nav>
 <div id="router-view"></div>
-`,v=new b(T);document.querySelector("#app").innerHTML=P;document.addEventListener("DOMContentLoaded",()=>{window.location.pathname==="/"&&history.replaceState({},"","/"),v.resolve().catch(s=>console.log(s))});document.addEventListener("click",s=>{const t=s.target;if(t instanceof HTMLElement){const e=t.getAttribute("href");e&&e.startsWith("/")&&(s.preventDefault(),v.navigate(e).catch(a=>console.log(a)))}});
+`,v=new b(T);document.querySelector("#app").innerHTML=P;document.addEventListener("DOMContentLoaded",()=>{history.replaceState({},"",window.location.pathname),v.resolve().catch(s=>console.log(s))});document.addEventListener("click",s=>{const t=s.target;if(t instanceof HTMLElement){const e=t.getAttribute("href");e&&e.startsWith("/")&&(s.preventDefault(),v.navigate(e).catch(a=>console.log(a)))}});
