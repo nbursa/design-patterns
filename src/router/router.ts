@@ -66,8 +66,7 @@ export class Router {
   async resolve(): Promise<void> {
     const path = window.location.pathname;
     const route = this.routes.find((r) => {
-      const normalizedRoutePath = r.path.replace(/\/$/, '');
-      return path === normalizedRoutePath;
+      return path === r.path;
     });
     const scriptImports: ScriptImportsMap = {
       constructor: () => import('../pages/constructor/index.ts'),
@@ -104,7 +103,7 @@ export class Router {
         }
 
         console.log(route.path);
-        if ([`/home`, `/catalog`].includes(route.path)) {
+        if ([`/`, `/catalog`].includes(route.path)) {
           routerView.removeAttribute('style');
         }
       } catch (error) {
@@ -127,7 +126,7 @@ export class Router {
       existingToggleBtn.parentNode?.removeChild(existingToggleBtn);
     }
 
-    if (!['/home', '/catalog'].includes(path) && !existingSidebar) {
+    if (!['/', '/catalog'].includes(path) && !existingSidebar) {
       const sidebar = document.createElement('nav');
       sidebar.id = 'sidebar';
       sidebar.innerHTML = Sidebar;

@@ -8,7 +8,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = Main;
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname === '/') {
-    history.replaceState({}, '', '/home');
+    history.replaceState({}, '', '/');
   }
   router.resolve().catch((error) => console.log(error));
 });
