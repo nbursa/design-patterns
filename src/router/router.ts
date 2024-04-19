@@ -65,8 +65,9 @@ export class Router {
 
   async resolve(): Promise<void> {
     const path = window.location.pathname;
+    const normalizePath = (path: string) => path.replace(/\/$/, '');
     const route = this.routes.find((r) => {
-      return path === r.path;
+      return normalizePath(path) === normalizePath(r.path);
     });
     const scriptImports: ScriptImportsMap = {
       constructor: () => import('../pages/constructor/index.ts'),
@@ -102,7 +103,6 @@ export class Router {
           pageScript.default();
         }
 
-        console.log(route.path);
         if ([`/`, `/catalog`].includes(route.path)) {
           routerView.removeAttribute('style');
         }
