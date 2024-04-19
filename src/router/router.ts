@@ -10,7 +10,7 @@ interface ScriptImportsMap {
 }
 
 export class Router {
-  basePath = '/design-patterns';
+  basePath = '/';
   routes: {
     path: string;
     component: () => Promise<{ default: string }>;
