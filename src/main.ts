@@ -7,10 +7,9 @@ const router = new Router(routes);
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = Main;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // if (window.location.pathname === '/') {
-  history.replaceState({}, '', window.location.pathname);
-  // }
-  router.resolve().catch((error) => console.log(error));
+  router
+    .resolve()
+    .catch((error) => console.error('Error resolving initial route:', error));
 });
 
 document.addEventListener('click', (event) => {

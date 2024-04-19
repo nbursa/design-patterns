@@ -61,15 +61,14 @@ export class Router {
   normalizePath = (path: string) => path.replace(/\/$/, '');
 
   async navigate(path: string) {
-    history.pushState({}, '', this.normalizePath(path));
+    window.location.hash = path;
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
-    const path = window.location.pathname;
-    const route = this.routes.find((r) => {
-      return this.normalizePath(path) === this.normalizePath(r.path);
-    });
+    const path = window.location.hash.slice(1) || '/';
+    const route = this.routes.find((r) => r.path === path);
+
     const scriptImports: ScriptImportsMap = {
       constructor: () => import('../pages/constructor/index.ts'),
       module: () => import('../pages/module/index.ts'),
@@ -116,7 +115,7 @@ export class Router {
   }
 
   renderSidebar(): void {
-    const path = window.location.pathname;
+    const path = window.location.hash.slice(1) || '/';
     const existingSidebar = document.querySelector('#sidebar');
     const existingToggleBtn = document.querySelector('#toggle');
 
@@ -126,7 +125,6 @@ export class Router {
     if (existingToggleBtn) {
       existingToggleBtn.parentNode?.removeChild(existingToggleBtn);
     }
-
     if (!['/', '/catalog'].includes(path) && !existingSidebar) {
       const sidebar = document.createElement('nav');
       sidebar.id = 'sidebar';
