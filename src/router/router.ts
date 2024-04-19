@@ -10,7 +10,6 @@ interface ScriptImportsMap {
 }
 
 export class Router {
-  basePath = '/';
   routes: {
     path: string;
     component: () => Promise<{ default: string }>;
@@ -54,32 +53,22 @@ export class Router {
   }
 
   addRoute(path: string, component: () => Promise<{ default: string }>): void {
-    const fullPath = path;
-
-    if (!this.routes.some((route) => route.path === fullPath)) {
-      this.routes.push({ path: fullPath, component });
+    if (!this.routes.some((route) => route.path === path)) {
+      this.routes.push({ path, component });
     }
   }
 
   async navigate(path: string) {
-    window.location.hash = `#${path}`;
+    history.pushState({}, '', path);
     await this.resolve();
   }
 
   async resolve(): Promise<void> {
-    const location = window.location.hash.slice(1);
-    const basePath = this.basePath.replace(/\/$/, '');
-    const path = location
-      .replace(new RegExp(`^${basePath}`), '')
-      .replace(/\/$/, '');
+    const path = window.location.pathname;
     const route = this.routes.find((r) => {
       const normalizedRoutePath = r.path.replace(/\/$/, '');
-      return (
-        `${basePath}${location}` === normalizedRoutePath ||
-        path.startsWith(normalizedRoutePath + '/')
-      );
+      return path === normalizedRoutePath;
     });
-
     const scriptImports: ScriptImportsMap = {
       constructor: () => import('../pages/constructor/index.ts'),
       module: () => import('../pages/module/index.ts'),
@@ -96,41 +85,38 @@ export class Router {
       mediator: () => import('../pages/mediator/index.ts'),
       command: () => import('../pages/command/index.ts'),
     };
-
-    const el =
-      document.querySelector('#router-view') || this.createRouterView();
-    const routerView = document.querySelector('#router-view') as HTMLElement;
+    const routerView =
+      (document.querySelector('#router-view') as HTMLElement) ||
+      this.createRouterView();
+    routerView.innerHTML = '';
 
     if (route) {
       try {
         const componentModule = await route.component();
-        el.innerHTML = componentModule.default;
+        routerView.innerHTML = componentModule.default;
         this.renderSidebar();
 
-        const lastSegment = path.split('/').pop();
-        const pageScriptImport = scriptImports[lastSegment || ''];
+        const lastSegment = path.split('/').pop() || '';
+        const pageScriptImport = scriptImports[lastSegment];
         if (pageScriptImport) {
           const pageScript = await pageScriptImport();
-          if (pageScript.default) {
-            pageScript.default();
-          }
+          pageScript.default();
         }
-        if ([`${basePath}/home`, `${basePath}/catalog`].includes(route.path)) {
+
+        console.log(route.path);
+        if ([`/home`, `/catalog`].includes(route.path)) {
           routerView.removeAttribute('style');
         }
       } catch (error) {
-        el.innerHTML = `Failed to load the component, ${error}`;
+        routerView.innerHTML = `Failed to load the component, ${error}`;
       }
     } else {
-      el.innerHTML = NotFound;
-      routerView.removeAttribute('style');
+      routerView.innerHTML = NotFound;
     }
   }
 
   renderSidebar(): void {
-    const fullPath = window.location.hash.slice(1);
-
-    const path = fullPath.replace(new RegExp(`^${this.basePath}`), '');
+    const path = window.location.pathname;
     const existingSidebar = document.querySelector('#sidebar');
     const existingToggleBtn = document.querySelector('#toggle');
 
@@ -192,14 +178,14 @@ export class Router {
         routerView.style.width = 'calc(100vw - 300px)';
 
         if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src='${this.basePath}/arrow.svg' alt='arrow' />`;
+          toggleBtn.innerHTML = `<img src='/arrow.svg' alt='arrow' />`;
         }
       } else {
         routerView.style.left = '0';
         routerView.style.width = '100vw';
 
         if (toggleBtn) {
-          toggleBtn.innerHTML = `<img src='${this.basePath}/arrow.svg' alt='arrow' class='rotate' />`;
+          toggleBtn.innerHTML = `<img src='/arrow.svg' alt='arrow' class='rotate' />`;
         }
       }
     }
