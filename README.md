@@ -2,7 +2,7 @@
 
 This repository is a comprehensive collection of design patterns implemented in JavaScript. Design patterns are best practices that the developer community has found to be particularly useful in common scenarios. This project aims to illustrate how various design patterns can be applied in JavaScript development to solve specific design problems or enhance the efficiency of code.
 
-To see the patterns in action, visit the demo site: [Design Patterns Demo](https://nbursa.github.io/design-patterns/#/home)
+To see the patterns in action, visit the demo site: [Design Patterns Demo](https://nbursa.github.io/design-patterns)
 
 
 ## Patterns Included
