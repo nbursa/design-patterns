@@ -13,6 +13,7 @@ dist-ssr
 *.local
 #vite.config.js
 .env
+.env.production
 
 # Editor directories and files
 .vscode/*

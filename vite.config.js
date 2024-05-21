@@ -10,7 +10,7 @@ export default defineConfig({
     createHtmlPlugin({
       inject: {
         data: {
-          VITE_GA_TRACKING_ID: import.meta.env.VITE_GA_TRACKING_ID,
+          VITE_GA_TRACKING_ID: process.env.VITE_GA_TRACKING_ID,
         },
       },
     }),
