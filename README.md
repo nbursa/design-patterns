@@ -1,33 +1,40 @@
 # Design Patterns
 
-This repository is a comprehensive collection of design patterns implemented in JavaScript. Design patterns are best practices that the developer community has found to be particularly useful in common scenarios. This project aims to illustrate how various design patterns can be applied in JavaScript development to solve specific design problems or enhance the efficiency of code.
+<div style="display: flex; justify-content: space-around; gap: 1rem;">
+  <img src="public/Desktop.png" alt="Desktop view" width="80%"/>
+  <img src="public/Mobile.png" alt="Mobile view" width="20%"/>
+</div>
+
+This repository is a comprehensive collection of design patterns implemented in JavaScript. Design patterns are best
+practices that the developer community has found to be particularly useful in common scenarios. This project aims to
+illustrate how various design patterns can be applied in JavaScript development to solve specific design problems or
+enhance the efficiency of code.
 
 To see the patterns in action, visit the demo site: [Design Patterns](https://nbursa.github.io/design-patterns)
-
 
 ## Patterns Included
 
 - **Creation Patterns**
 
-  - Singleton
-  - Factory
-  - Abstract Factory
-  - Constructor
-  - Prototype
-  - Module
-  - Revealing Module
+    - Singleton
+    - Factory
+    - Abstract Factory
+    - Constructor
+    - Prototype
+    - Module
+    - Revealing Module
 
 - **Structure Patterns**
 
-  - Facade
-  - Mixin
-  - Decorator
-  - Flyweight
+    - Facade
+    - Mixin
+    - Decorator
+    - Flyweight
 
 - **Behavior Patterns**
-  - Observer
-  - Mediator
-  - Command
+    - Observer
+    - Mediator
+    - Command
 
 ## Getting Started
 
