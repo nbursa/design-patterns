@@ -10,7 +10,10 @@ practices that the developer community has found to be particularly useful in co
 illustrate how various design patterns can be applied in JavaScript development to solve specific design problems or
 enhance the efficiency of code.
 
-To see the patterns in action, visit the demo site: [Design Patterns](https://nbursa.github.io/design-patterns)
+To see the patterns in action, visit the demo sites:
+
+- [GitHub Pages](https://nbursa.github.io/design-patterns)
+- [Custom Domain](https://designpatterns.nenadbursac.com/)
 
 ## Patterns Included
 
