@@ -1,7 +1,7 @@
 # Design Patterns
 
 <div style="display: flex; justify-content: space-around; gap: 1rem;">
-  <img src="public/Desktop.png" alt="Desktop view" width="75%"/>
+  <img src="public/Desktop.png" alt="Desktop view" width="65%"/>
   <img src="public/Mobile.png" alt="Mobile view" width="20%"/>
 </div>
 
